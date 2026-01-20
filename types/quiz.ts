@@ -1,0 +1,31 @@
+export interface QuizAnswers {
+  ageGroup?: string;
+  goal?: string;
+  faceYogaKnowledge?: string;
+  skinSatisfaction?: string;
+  focusAreas?: string[];
+  skincareRoutine?: string;
+  careCosmetics?: string[];
+  sunSafety?: string;
+  diet?: string;
+  aestheticianVisits?: string;
+  sugarConsumption?: string;
+  waterIntake?: number;
+  gender?: string;
+  skinType?: string;
+  skinConcerns?: string[];
+  faceShape?: string;
+  menstrualCycle?: string;
+  mentalHealth?: string[];
+  timeCommitment?: string;
+  additionalFeatures?: string[];
+  improvementAreas?: string[];
+  skinTone?: string;
+  concerns?: string[];
+  sleepHours?: number;
+  sunProtection?: string;
+  stress?: string;
+  emailSubscription?: string;
+  email?: string;
+  planSelection?: string;
+}

@@ -8,8 +8,8 @@ export interface ScienceStudiesScreenProps {
 
 export function ScienceStudiesScreen({ onNext }: ScienceStudiesScreenProps) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-8">
-      <div className="w-full max-w-lg space-y-8">
+    <div className=" bg-gray-50 flex flex-col items-center justify-center px-6 py-8">
+      <div className="w-full max-w-lg space-y-2">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-8">
             Reverse your wrinkles with

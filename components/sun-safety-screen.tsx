@@ -26,7 +26,7 @@ export function SunSafetyScreen({ onNext, onBack }: SunSafetyScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className=" bg-gray-50 flex flex-col">
       {/* Header with back button and progress */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -64,7 +64,7 @@ export function SunSafetyScreen({ onNext, onBack }: SunSafetyScreenProps) {
         <div className="w-10"></div>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-8">
         <div className="w-full max-w-lg space-y-8">
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold text-gray-900">Sun safety</h1>

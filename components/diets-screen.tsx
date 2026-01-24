@@ -79,7 +79,7 @@ export function DietsScreen({ onNext, onBack }: DietsScreenProps) {
         <div className="w-10"></div>
       </div>
 
-      <div className="flex-1 flex flex-col items-center px-6 pt-2">
+      <div className="flex-1 flex flex-col items-center px-6 ">
         <div className="w-full max-w-lg space-y-6">
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-bold text-gray-900">Diets</h1>
@@ -88,7 +88,7 @@ export function DietsScreen({ onNext, onBack }: DietsScreenProps) {
             </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 scale-85 -mt-20">
             {dietOptions.map((option) => (
               <button
                 key={option.value}

@@ -36,7 +36,7 @@ export function MentalHealthScreen({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className=" bg-gray-50 flex flex-col">
       {/* Header with back button */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -44,7 +44,7 @@ export function MentalHealthScreen({
         </button>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 pb-8 -mt-15">
         <div className="w-full max-w-lg space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-xl font-bold text-gray-900 leading-tight">
@@ -58,7 +58,7 @@ export function MentalHealthScreen({
             </h1>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 scale-96 -mt-8">
             {mentalHealthOptions.map((option) => (
               <button
                 key={option}

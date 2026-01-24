@@ -21,7 +21,7 @@ export function BenefitsExplanationScreen({
         </button>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 pt-0 -mt-10">
         <div className="w-full max-w-lg space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-2xl font-bold text-gray-900">

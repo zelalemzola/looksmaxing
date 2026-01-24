@@ -10,7 +10,7 @@ export interface AnalyzingResponsesScreenProps {
 const analysisSteps = [
   { label: "Analyzing skin condition", targetProgress: 100, duration: 4000 },
   { label: "Skin Care and Routine", targetProgress: 100, duration: 3000 },
-  { label: "Medical Conditions", targetProgress: 54, duration: 2000 },
+  { label: "Medical Conditions", targetProgress: 100, duration: 2000 },
   { label: "Generating Your Action Plan", targetProgress: 100, duration: 3000 },
 ];
 

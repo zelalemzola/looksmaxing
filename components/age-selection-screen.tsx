@@ -25,10 +25,10 @@ export function AgeSelectionScreen({ onNext }: AgeSelectionScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="flex-1 flex flex-col items-center px-6 pt-4">
-        <div className="w-full max-w-lg space-y-3">
-          <div className="text-center space-y-1">
+    <div className=" bg-gray-50 flex flex-col ">
+      <div className="flex-1 flex flex-col items-center px-6 pt-4 min-h-0">
+        <div className="w-full max-w-lg space-y-3 flex-1 flex flex-col">
+          <div className="text-center space-y-1 flex-shrink-0">
             <h1 className="text-xl font-bold text-gray-900 leading-tight">
               Look younger naturally with
               <br />
@@ -39,16 +39,16 @@ export function AgeSelectionScreen({ onNext }: AgeSelectionScreenProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-2 flex-1 mx-auto">
             {ageOptions.map((option) => (
               <button
                 key={option.value}
                 onClick={() => setSelectedAge(option.value)}
-                className={`relative overflow-hidden rounded-xl transition-all ${
+                className={`relative overflow-hidden w-fit rounded-xl transition-all ${
                   selectedAge === option.value ? "ring-2 ring-orange-400" : ""
                 }`}
               >
-                <div className="aspect-[5/6] relative">
+                <div className="w-40 h-40 relative">
                   <Image
                     src={option.image}
                     alt={option.label}
@@ -76,7 +76,7 @@ export function AgeSelectionScreen({ onNext }: AgeSelectionScreenProps) {
             ))}
           </div>
 
-          <p className="text-xs text-gray-500 text-center">
+          <p className="text-xs text-gray-500 text-center flex-shrink-0">
             By continuing, you agree to:{" "}
             <a href="#" className="underline">
               Terms Of Use
@@ -86,21 +86,21 @@ export function AgeSelectionScreen({ onNext }: AgeSelectionScreenProps) {
               Privacy Policy
             </a>
           </p>
-        </div>
 
-        {/* Continue Button */}
-        <div className="mt-4 pb-4 w-full">
-          <button
-            onClick={handleNext}
-            disabled={!selectedAge}
-            className={`w-full max-w-lg mx-auto block py-3 px-6 rounded-full font-semibold transition-opacity ${
-              selectedAge
-                ? "bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90"
-                : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }`}
-          >
-            Continue
-          </button>
+          {/* Continue Button */}
+          <div className="pb-4 w-full flex-shrink-0">
+            <button
+              onClick={handleNext}
+              disabled={!selectedAge}
+              className={`w-full py-3 px-6 rounded-full font-semibold transition-opacity ${
+                selectedAge
+                  ? "bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90"
+                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
+              }`}
+            >
+              Continue
+            </button>
+          </div>
         </div>
       </div>
     </div>

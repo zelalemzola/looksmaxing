@@ -38,6 +38,8 @@ import { FinalEmailCollectionScreen } from "@/components/final-email-collection-
 import { EmailSubscriptionScreen } from "@/components/email-subscription-screen";
 import { NewYearOfferScreen } from "@/components/new-year-offer-screen";
 import { PlanReadyScreen } from "@/components/plan-ready-screen";
+import { AnalyzingSkinScreen } from "@/components/analyzing-skin-screen";
+import { InsightPopupScreen } from "@/components/insight-popup-screen";
 
 export default function QuizPage() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -85,6 +87,7 @@ export default function QuizPage() {
   const steps = [
     <AgeSelectionScreen key="age" onNext={handleNext} />,
     <MainGoalScreen key="goal" onNext={handleNext} onBack={handleBack} />,
+    <AnalyzingSkinScreen key="analyzing-skin" onNext={handleExplanationNext} />,
     <FaceYogaKnowledgeScreen
       key="knowledge"
       onNext={handleNext}
@@ -99,6 +102,12 @@ export default function QuizPage() {
       key="satisfaction"
       onNext={handleNext}
       onBack={handleBack}
+    />,
+    <InsightPopupScreen
+      key="insight-1"
+      onNext={handleExplanationNext}
+      insight="Based on your skin satisfaction level, we're customizing exercises to target your specific concerns."
+      title="We noticed something about your skin"
     />,
     <FocusAreasScreen key="focus" onNext={handleNext} onBack={handleBack} />,
     <BenefitsExplanationScreen
@@ -121,6 +130,12 @@ export default function QuizPage() {
       onNext={handleNext}
       onBack={handleBack}
     />,
+    <InsightPopupScreen
+      key="insight-2"
+      onNext={handleExplanationNext}
+      insight="Your skincare routine shows you're dedicated to self-care. We're adding complementary face yoga techniques."
+      title="Great skincare habits detected!"
+    />,
     <SunSafetyScreen key="sun" onNext={handleNext} onBack={handleBack} />,
     <ProgramPersonalizationScreen
       key="program"
@@ -139,6 +154,12 @@ export default function QuizPage() {
       onBack={handleBack}
     />,
     <WaterIntakeScreen key="water" onNext={handleNext} onBack={handleBack} />,
+    <InsightPopupScreen
+      key="insight-3"
+      onNext={handleExplanationNext}
+      insight="Your lifestyle choices directly impact your skin health. We're incorporating this into your personalized plan."
+      title="Lifestyle analysis complete"
+    />,
     <GenderSelectionScreen
       key="gender"
       onNext={handleNext}
@@ -193,10 +214,7 @@ export default function QuizPage() {
       key="science-studies"
       onNext={handleExplanationNext}
     />,
-    <AnalyzingResponsesScreen
-      key="analyzing-responses"
-      onNext={handleExplanationNext}
-    />,
+    <AnalyzingResponsesScreen key="analyzing-responses" onNext={handleNext} />,
     <FinalEmailCollectionScreen key="final-email" onNext={handleNext} />,
     <EmailSubscriptionScreen key="email-subscription" onNext={handleNext} />,
     <NewYearOfferScreen key="new-year-offer" onNext={handleExplanationNext} />,
@@ -204,10 +222,12 @@ export default function QuizPage() {
   ];
 
   return (
-    steps[currentStep] || (
-      <div>
-        Quiz Complete! Collected answers: {JSON.stringify(answers, null, 2)}
-      </div>
-    )
+    <div className="">
+      {steps[currentStep] || (
+        <div className="h-full flex items-center justify-center">
+          Quiz Complete! Collected answers: {JSON.stringify(answers, null, 2)}
+        </div>
+      )}
+    </div>
   );
 }

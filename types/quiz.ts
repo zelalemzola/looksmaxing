@@ -1,6 +1,7 @@
 export interface QuizAnswers {
   ageGroup?: string;
   goal?: string;
+  goals?: string[]; // New multiselect goals
   faceYogaKnowledge?: string;
   skinSatisfaction?: string;
   focusAreas?: string[];

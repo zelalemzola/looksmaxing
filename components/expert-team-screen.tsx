@@ -29,22 +29,10 @@ const experts = [
 
 export function ExpertTeamScreen({ onNext }: ExpertTeamScreenProps) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-8">
+    <div className=" bg-gray-50 flex flex-col items-center justify-center px-6 py-8">
       <div className="w-full max-w-lg space-y-8">
-        <div className="text-center space-y-4">
-          <div className="w-12 h-12 bg-orange-400 rounded-full flex items-center justify-center mx-auto">
-            <svg
-              className="w-6 h-6 text-white"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </div>
+        <div className="text-center">
+          
           <h1 className="text-xl font-bold text-gray-900 leading-tight">
             Luvly programs are developed by
             <br />

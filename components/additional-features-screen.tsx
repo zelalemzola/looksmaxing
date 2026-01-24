@@ -56,7 +56,7 @@ export function AdditionalFeaturesScreen({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className=" bg-gray-50 flex flex-col">
       {/* Header with back button and progress */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -97,7 +97,7 @@ export function AdditionalFeaturesScreen({
       <div className="flex-1 flex flex-col items-center px-6 pt-2">
         <div className="w-full max-w-lg space-y-6">
           <div className="text-center space-y-2">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-xl font-bold text-gray-900">
               Besides Face Yoga trainings
               <br />
               in your plan, what else
@@ -106,7 +106,7 @@ export function AdditionalFeaturesScreen({
             </h1>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 -mt-5">
             {features.map((feature) => (
               <button
                 key={feature.id}
@@ -137,7 +137,7 @@ export function AdditionalFeaturesScreen({
       </div>
 
       {/* Continue Button */}
-      <div className="pb-8 px-6">
+      <div className="pb-8 px-6 mt-5">
         <button
           onClick={handleNext}
           className="w-full max-w-lg mx-auto block py-4 px-6 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"

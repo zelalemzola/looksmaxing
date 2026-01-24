@@ -36,7 +36,7 @@ export function ImprovementAreasScreen({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className=" bg-gray-50 flex flex-col">
       {/* Header with back button and progress */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -68,20 +68,20 @@ export function ImprovementAreasScreen({
         <div className="w-10"></div>
       </div>
 
-      <div className="flex-1 flex flex-col items-center px-6 pt-2">
-        <div className="w-full max-w-lg space-y-6">
+      <div className="flex-1 flex flex-col items-center px-6 pt-2 ">
+        <div className="w-full max-w-lg ">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-xl font-bold text-gray-900">
               What areas would you like
               <br />
               to improve?
             </h1>
           </div>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center  ">
             {/* Face illustration */}
             <div className="flex-shrink-0">
-              <div className="w-48 h-128 relative">
+              <div className="w-48 h-80 relative">
                 <Image
                   src="/facearea.webp"
                   alt="Face areas"
@@ -92,7 +92,7 @@ export function ImprovementAreasScreen({
             </div>
 
             {/* Options */}
-            <div className="flex-1 space-y-3 -mt-20">
+            <div className="flex-1 space-y-3 scale-90">
               {improvementAreas.map((area) => (
                 <button
                   key={area}
@@ -129,7 +129,7 @@ export function ImprovementAreasScreen({
       </div>
 
       {/* Continue Button */}
-      <div className="pb-8 px-6">
+      <div className="pb-2 px-6 ">
         <button
           onClick={handleNext}
           className="w-full max-w-lg mx-auto block py-4 px-6 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"

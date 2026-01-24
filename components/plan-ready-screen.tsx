@@ -405,6 +405,171 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
               The only skincare app
             </h2>
           </div>
+
+          {/* Build a consistent beauty routine section */}
+          <div className="bg-white rounded-3xl p-6 shadow-sm mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
+              Build a consistent
+              <br />
+              beauty routine
+            </h2>
+            <div className="flex justify-center">
+              <div className="w-full max-w-sm relative">
+                <Image
+                  src="/images/consistent-beauty-routine.webp"
+                  alt="Consistent beauty routine calendar"
+                  width={400}
+                  height={300}
+                  className="w-full rounded-xl object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Luvly success stories section */}
+          <div className="bg-white rounded-3xl p-6 shadow-sm mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
+              Luvly success stories
+            </h2>
+            <div className="flex justify-center mb-4">
+              {[...Array(5)].map((_, i) => (
+                <svg
+                  key={i}
+                  className="w-5 h-5 text-yellow-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+              ))}
+            </div>
+            <p className="text-gray-700 text-center leading-relaxed mb-4">
+              "I've been using Luvly for a month and my wrinkles have reduced so
+              much. My husband said it's like I'm aging backwards!"
+            </p>
+            <p className="text-gray-900 font-semibold text-center">
+              Lien Da Silva
+            </p>
+          </div>
+
+          {/* What you get section */}
+          <div className="bg-white rounded-3xl p-6 shadow-sm mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">
+              What you get
+            </h2>
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 p-4 bg-pink-50 rounded-2xl">
+                <div className="w-16 h-16 relative flex-shrink-0">
+                  <Image
+                    src="/images/personalized-face-yoga-program.webp"
+                    alt="Personalized face yoga program"
+                    width={64}
+                    height={64}
+                    className="w-full h-full rounded-xl object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Personalized face yoga program targeting your problem areas
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-orange-50 rounded-2xl">
+                <div className="w-16 h-16 relative flex-shrink-0">
+                  <Image
+                    src="/images/doublechin.webp"
+                    alt="Double chin specialized course"
+                    width={64}
+                    height={64}
+                    className="w-full h-full rounded-xl object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Double chin specialized course to maximize your results
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-purple-50 rounded-2xl">
+                <div className="w-16 h-16 relative flex-shrink-0">
+                  <Image
+                    src="/images/gua-sha.webp"
+                    alt="Gua Sha massage course"
+                    width={64}
+                    height={64}
+                    className="w-full h-full rounded-xl object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Gua Sha massage course from Luvly experts
+                  </h3>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-green-50 rounded-2xl">
+                <div className="w-16 h-16 relative flex-shrink-0">
+                  <Image
+                    src="/images/exclusive-video-course.webp"
+                    alt="Exclusive video courses"
+                    width={64}
+                    height={64}
+                    className="w-full h-full rounded-xl object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 mb-1">
+                    Exclusive video courses about face massage, skincare, and
+                    skin health
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Security and support information */}
+          <div className="bg-white rounded-3xl p-6 shadow-sm mb-8">
+            <div className="space-y-6">
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Your information is safe
+                </h3>
+                <p className="text-sm text-gray-600">
+                  We won't sell or rent your personal contact information for
+                  any marketing purposes whatsoever.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Secure checkout
+                </h3>
+                <p className="text-sm text-gray-600">
+                  All information is encrypted and transmitted without risk
+                  using a Secure Socket Layer protocol.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2">Need help?</h3>
+                <p className="text-sm text-orange-600 underline cursor-pointer">
+                  Contact support
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Subscription terms */}
+          <div className="text-xs text-gray-500 text-center leading-relaxed mb-8">
+            You will be automatically charged $18.99 after the payment
+            confirmation. The subscription will then be auto renewed every month
+            for $18.99 until you decide to cancel it. You can cancel at any time
+            before the renewal. Payments are charged in USD. To learn more,
+            visit our <span className="underline">Terms of Use</span> or{" "}
+            <span className="underline">contact support</span>.
+          </div>
         </div>
       </div>
     </div>

@@ -40,6 +40,8 @@ import { NewYearOfferScreen } from "@/components/new-year-offer-screen";
 import { PlanReadyScreen } from "@/components/plan-ready-screen";
 import { AnalyzingSkinScreen } from "@/components/analyzing-skin-screen";
 import { InsightPopupScreen } from "@/components/insight-popup-screen";
+import { FaceUploadScreen } from "@/components/face-upload-screen";
+import { MediaInsightPopupScreen } from "@/components/media-insight-popup-screen";
 
 export default function QuizPage() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -87,6 +89,11 @@ export default function QuizPage() {
   const steps = [
     <AgeSelectionScreen key="age" onNext={handleNext} />,
     <MainGoalScreen key="goal" onNext={handleNext} onBack={handleBack} />,
+    <FaceUploadScreen
+      key="face-upload"
+      onNext={handleNext}
+      onBack={handleBack}
+    />,
     <AnalyzingSkinScreen key="analyzing-skin" onNext={handleExplanationNext} />,
     <FaceYogaKnowledgeScreen
       key="knowledge"
@@ -130,11 +137,13 @@ export default function QuizPage() {
       onNext={handleNext}
       onBack={handleBack}
     />,
-    <InsightPopupScreen
+    <MediaInsightPopupScreen
       key="insight-2"
       onNext={handleExplanationNext}
       insight="Your skincare routine shows you're dedicated to self-care. We're adding complementary face yoga techniques."
       title="Great skincare habits detected!"
+      mediaType="gif"
+      mediaSrc="/new/secondgif.gif"
     />,
     <SunSafetyScreen key="sun" onNext={handleNext} onBack={handleBack} />,
     <ProgramPersonalizationScreen
@@ -154,11 +163,13 @@ export default function QuizPage() {
       onBack={handleBack}
     />,
     <WaterIntakeScreen key="water" onNext={handleNext} onBack={handleBack} />,
-    <InsightPopupScreen
+    <MediaInsightPopupScreen
       key="insight-3"
       onNext={handleExplanationNext}
       insight="Your lifestyle choices directly impact your skin health. We're incorporating this into your personalized plan."
       title="Lifestyle analysis complete"
+      mediaType="image"
+      mediaSrc="/new/thirdbeforeafter.png"
     />,
     <GenderSelectionScreen
       key="gender"
@@ -207,6 +218,15 @@ export default function QuizPage() {
       key="additional-features"
       onNext={handleNext}
       onBack={handleBack}
+    />,
+    <MediaInsightPopupScreen
+      key="insight-4"
+      onNext={handleExplanationNext}
+      insight="Based on your preferences, we're creating a comprehensive plan that fits your lifestyle perfectly."
+      title="Personalizing your experience"
+      mediaType="image"
+      mediaSrc="/new/firstbeforeafter.png"
+      duration={3500}
     />,
     <SuccessStatsScreen key="success-stats" onNext={handleExplanationNext} />,
     <ExpertTeamScreen key="expert-team" onNext={handleExplanationNext} />,

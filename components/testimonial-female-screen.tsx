@@ -41,20 +41,20 @@ export function TestimonialFemaleScreen({
           </div>
 
           <div className="flex justify-center gap-4">
-            <div className="w-32 h-40 relative rounded-2xl overflow-hidden">
+            <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
               <Image
                 src="/femalebefore.webp"
                 alt="Before"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
-            <div className="w-32 h-40 relative rounded-2xl overflow-hidden">
+            <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
               <Image
                 src="/femaleafter.webp"
                 alt="After"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>

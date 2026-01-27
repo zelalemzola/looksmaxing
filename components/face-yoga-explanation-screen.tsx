@@ -44,11 +44,11 @@ export function FaceYogaExplanationScreen({
               </h3>
               <div className="relative">
                 <Image
-                  src="/images/beforeafter.jpg"
+                  src="/new/fourthbeforeafter.png"
                   alt="Before and after face yoga results"
                   width={300}
-                  height={150}
-                  className="w-full h-32 md:h-40 rounded-xl object-cover"
+                  height={200}
+                  className="w-full h-40 rounded-xl object-contain"
                 />
                 <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
                   Before
@@ -66,11 +66,11 @@ export function FaceYogaExplanationScreen({
               </h3>
               <div className="relative">
                 <Image
-                  src="/images/bf.gif"
+                  src="/new/firstgif.gif"
                   alt="Face yoga exercise demonstration"
                   width={300}
-                  height={150}
-                  className="w-full h-32 md:h-40 rounded-xl object-cover"
+                  height={200}
+                  className="w-full h-40 rounded-xl object-contain"
                   unoptimized
                 />
               </div>

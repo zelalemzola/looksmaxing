@@ -2,6 +2,7 @@ export interface QuizAnswers {
   ageGroup?: string;
   goal?: string;
   goals?: string[]; // New multiselect goals
+  faceImage?: string; // Base64 encoded face image
   faceYogaKnowledge?: string;
   skinSatisfaction?: string;
   focusAreas?: string[];

@@ -79,20 +79,20 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
           {/* Male before/after results */}
           <div className="bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl p-6 mb-8">
             <div className="flex justify-center gap-4 mb-4">
-              <div className="w-32 h-40 relative rounded-2xl overflow-hidden">
+              <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
                 <Image
-                  src="/malebefore.webp"
+                  src="/new/firstbeforeafter.png"
                   alt="Before"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
-              <div className="w-32 h-40 relative rounded-2xl overflow-hidden">
+              <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
                 <Image
-                  src="/maleafter.webp"
+                  src="/new/secondbeforeafter.png"
                   alt="After"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>

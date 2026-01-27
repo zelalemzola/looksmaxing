@@ -13,7 +13,7 @@ export function FaceYogaExplanationScreen({
   onBack,
 }: FaceYogaExplanationScreenProps) {
   return (
-    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
+    <div className=" bg-gray-50 flex flex-col">
       {/* Header with back button */}
       <div className="flex items-center justify-between p-4 flex-shrink-0">
         <button onClick={onBack} className="p-2">
@@ -21,7 +21,7 @@ export function FaceYogaExplanationScreen({
         </button>
       </div>
 
-      <div className="flex-1 flex flex-col px-6 py-2 min-h-0 overflow-y-auto">
+      <div className="flex-1 flex flex-col px-6 py-2  ">
         <div className="w-full max-w-4xl mx-auto space-y-4">
           <div className="text-center space-y-3">
             <h1 className="text-2xl font-bold text-gray-900">

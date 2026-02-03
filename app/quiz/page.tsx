@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { QuizAnswers } from "@/types/quiz";
+
+const QUIZ_ANSWERS_STORAGE_KEY = "luvly_quiz_answers";
 import { AgeSelectionScreen } from "@/components/age-selection-screen";
 import { MainGoalScreen } from "@/components/main-goal-screen";
 import { FaceYogaKnowledgeScreen } from "@/components/face-yoga-knowledge-screen";
@@ -46,6 +48,17 @@ import { MediaInsightPopupScreen } from "@/components/media-insight-popup-screen
 export default function QuizPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswers>({});
+
+  // Persist quiz answers to sessionStorage for report on payment success
+  useEffect(() => {
+    if (typeof window !== "undefined" && Object.keys(answers).length > 0) {
+      try {
+        sessionStorage.setItem(QUIZ_ANSWERS_STORAGE_KEY, JSON.stringify(answers));
+      } catch {
+        // ignore storage errors
+      }
+    }
+  }, [answers]);
 
   const handleNext = (newAnswers: Partial<QuizAnswers>) => {
     setAnswers((prev) => ({ ...prev, ...newAnswers }));
@@ -243,9 +256,9 @@ export default function QuizPage() {
 
   return (
     <div className="">
-      {steps[currentStep] || (
-        <div className="h-full flex items-center justify-center">
-          Quiz Complete! Collected answers: {JSON.stringify(answers, null, 2)}
+      {steps[currentStep] ?? (
+        <div className="min-h-screen flex flex-col items-center justify-center px-4">
+          <p className="text-muted-foreground">Redirecting to payment...</p>
         </div>
       )}
     </div>

@@ -1,17 +1,34 @@
-import React from 'react'
+"use client";
 
-const PaymentSuccessful = ({searchParams:{amount}}:{searchParams:{amount:string}}) => {
+import { useEffect, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+
+function PaymentSucessRedirectContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  useEffect(() => {
+    const query = searchParams.toString();
+    router.replace(`/payment-success${query ? `?${query}` : ""}`);
+  }, [searchParams, router]);
+
   return (
-    <div className='max-w-6xl mx-auto p-10 text-white text-center border m-10 rounded-md bg-gradient-to-tr from-green-500 to-purple-500'>
-        <div className="mb-10">
-            <h1 className="text-4xl font-extrabold mb-2">Payment Successful</h1>
-            <h2 className="text-2xl">
-                You have successfully paid
-                <span className="font-bold"> ${amount}</span>
-            </h2>
-        </div>
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <p className="text-muted-foreground">Redirecting…</p>
     </div>
-  )
+  );
 }
 
-export default PaymentSuccessful
+export default function PaymentSucessRedirect() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-background flex items-center justify-center">
+          <p className="text-muted-foreground">Loading…</p>
+        </div>
+      }
+    >
+      <PaymentSucessRedirectContent />
+    </Suspense>
+  );
+}

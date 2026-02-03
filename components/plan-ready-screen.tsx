@@ -1,14 +1,22 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import type { QuizAnswers } from "@/types/quiz";
+
+const PLAN_AMOUNTS: Record<string, number> = {
+  "7-day": 5.99,
+  "1-month": 18.99,
+  "3-month": 28.99,
+};
 
 export interface PlanReadyScreenProps {
   onNext: (answers: Partial<QuizAnswers>) => void;
 }
 
 export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
+  const router = useRouter();
   const [timeLeft, setTimeLeft] = useState({
     minutes: 8,
     seconds: 56,
@@ -34,7 +42,18 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
   const formatTime = (time: number) => time.toString().padStart(2, "0");
 
   const handleContinue = () => {
-    onNext({ planSelection: selectedPlan });
+    // Persist planSelection to sessionStorage for report on payment success (without advancing quiz step)
+    if (typeof window !== "undefined") {
+      try {
+        const stored = sessionStorage.getItem("luvly_quiz_answers");
+        const answers = stored ? { ...JSON.parse(stored), planSelection: selectedPlan } : { planSelection: selectedPlan };
+        sessionStorage.setItem("luvly_quiz_answers", JSON.stringify(answers));
+      } catch {
+        // ignore
+      }
+    }
+    const amount = PLAN_AMOUNTS[selectedPlan] ?? 18.99;
+    router.push(`/payment?plan=${encodeURIComponent(selectedPlan)}&amount=${amount}`);
   };
 
   return (

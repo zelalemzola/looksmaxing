@@ -20,6 +20,8 @@ export default function PricingPage() {
       cta: 'Start Free',
       ctaHref: '/quiz',
       popular: false,
+      amount: 0,
+      planId: 'free',
     },
     {
       name: 'Pro',
@@ -36,9 +38,11 @@ export default function PricingPage() {
         'Priority support',
         'Downloadable PDF guides',
       ],
-      cta: 'Start Free Trial',
-      ctaHref: '/quiz',
+      cta: 'Get Pro',
+      ctaHref: '/payment?plan=pro&amount=9.99',
       popular: true,
+      amount: 9.99,
+      planId: 'pro',
     },
     {
       name: 'Premium',
@@ -56,9 +60,11 @@ export default function PricingPage() {
         'Exclusive member community',
         'Lifetime access to updates',
       ],
-      cta: 'Start Free Trial',
-      ctaHref: '/quiz',
+      cta: 'Get Premium',
+      ctaHref: '/payment?plan=premium&amount=19.99',
       popular: false,
+      amount: 19.99,
+      planId: 'premium',
     },
   ]
 
@@ -112,7 +118,7 @@ export default function PricingPage() {
                 {/* CTA Button */}
                 <Link
                   href={plan.ctaHref}
-                  className={`w-full py-3 px-4 rounded-lg font-semibold text-center transition-colors ${
+                  className={`w-full py-3 px-4 rounded-lg font-semibold text-center transition-colors block ${
                     plan.popular
                       ? 'bg-primary text-primary-foreground hover:shadow-lg'
                       : 'border-2 border-primary text-primary hover:bg-primary/5'

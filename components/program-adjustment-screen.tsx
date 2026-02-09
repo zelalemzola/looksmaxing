@@ -13,7 +13,7 @@ export function ProgramAdjustmentScreen({
   onBack,
 }: ProgramAdjustmentScreenProps) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-y-hidden">
       {/* Header with back button */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -35,50 +35,21 @@ export function ProgramAdjustmentScreen({
           </div>
 
           <div className="flex justify-center">
-            <div className="relative">
-              <div className="w-72 h-44 bg-white rounded-2xl shadow-lg p-4 flex items-center justify-between">
-                <div className="text-center flex-1">
-                  <div className="text-xs text-gray-600 mb-2">
-                    Minimizing tired look
-                  </div>
-                  <div className="w-16 h-20 bg-gray-100 rounded-lg flex items-center justify-center mx-auto">
-                    <span className="text-xs text-gray-500 text-center leading-tight">
-                      ON YOUR
-                      <br />
-                      OWN
-                    </span>
-                  </div>
-                  <div className="text-xs text-gray-500 mt-2 px-1 leading-tight">
-                    Based on a 2 week study of active Luvly users
-                  </div>
-                </div>
-
-                <div className="text-center flex-1">
-                  <div className="text-xl font-bold text-orange-400 mb-2">
-                    2x 🎉
-                  </div>
-                  <div className="w-16 h-20 bg-gradient-to-b from-orange-300 to-orange-400 rounded-lg flex items-center justify-center mx-auto">
-                    <span className="text-xs text-white font-semibold text-center leading-tight">
-                      WITH
-                      <br />
-                      LUVLY
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Image src="/skinbasedplan.webp" alt="Program personalization" width={300} height={300} />
           </div>
         </div>
       </div>
 
       {/* Continue Button */}
-      <div className="pb-8 px-6">
+      <div className="flex justify-center">
+      <div className="pb-8 px-12 fixed bottom-2 mx-auto">
         <button
           onClick={onNext}
-          className="w-full max-w-lg mx-auto block py-4 px-6 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"
+          className=" max-w-lg mx-auto block py-4 px-12 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"
         >
-          Next
-        </button>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import CheckoutPage from "@/components/payment/CheckoutPage";
 import type { QuizAnswers } from "@/types/quiz";
+
+const QUIZ_ANSWERS_KEY = "luvly_quiz_answers";
+const stripePublishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+const stripePromise = stripePublishableKey ? loadStripe(stripePublishableKey) : null;
 
 const PLAN_AMOUNTS: Record<string, number> = {
   "7-day": 5.99,
@@ -11,17 +18,38 @@ const PLAN_AMOUNTS: Record<string, number> = {
   "3-month": 28.99,
 };
 
+const PLAN_NAMES: Record<string, string> = {
+  "7-day": "7-Day Plan",
+  "1-month": "1-Month Plan",
+  "3-month": "3-Month Plan",
+};
+
 export interface PlanReadyScreenProps {
   onNext: (answers: Partial<QuizAnswers>) => void;
+  faceImage?: string | null;
 }
 
-export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
-  const router = useRouter();
+export function PlanReadyScreen({ onNext, faceImage: faceImageProp }: PlanReadyScreenProps) {
   const [timeLeft, setTimeLeft] = useState({
     minutes: 8,
     seconds: 56,
   });
   const [selectedPlan, setSelectedPlan] = useState("1-month");
+  const [storedFaceImage, setStoredFaceImage] = useState<string | null>(null);
+  const faceImage = faceImageProp ?? storedFaceImage;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = sessionStorage.getItem(QUIZ_ANSWERS_KEY);
+      if (raw) {
+        const data = JSON.parse(raw) as { faceImage?: string };
+        if (data.faceImage) setStoredFaceImage(data.faceImage);
+      }
+    } catch {
+      // ignore
+    }
+  }, [faceImageProp]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,20 +69,27 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
 
   const formatTime = (time: number) => time.toString().padStart(2, "0");
 
-  const handleContinue = () => {
-    // Persist planSelection to sessionStorage for report on payment success (without advancing quiz step)
-    if (typeof window !== "undefined") {
-      try {
-        const stored = sessionStorage.getItem("luvly_quiz_answers");
-        const answers = stored ? { ...JSON.parse(stored), planSelection: selectedPlan } : { planSelection: selectedPlan };
-        sessionStorage.setItem("luvly_quiz_answers", JSON.stringify(answers));
-      } catch {
-        // ignore
-      }
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const stored = sessionStorage.getItem(QUIZ_ANSWERS_KEY);
+      const answers = stored ? { ...JSON.parse(stored), planSelection: selectedPlan } : { planSelection: selectedPlan };
+      sessionStorage.setItem(QUIZ_ANSWERS_KEY, JSON.stringify(answers));
+    } catch {
+      // ignore
     }
-    const amount = PLAN_AMOUNTS[selectedPlan] ?? 18.99;
-    router.push(`/payment?plan=${encodeURIComponent(selectedPlan)}&amount=${amount}`);
-  };
+  }, [selectedPlan]);
+
+  const amount = PLAN_AMOUNTS[selectedPlan] ?? 18.99;
+  const planName = PLAN_NAMES[selectedPlan] ?? "1-Month Plan";
+  const elementsOptions = useMemo(
+    () => ({
+      mode: "payment" as const,
+      amount: convertToSubcurrency(amount),
+      currency: "usd",
+    }),
+    [amount]
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -70,9 +105,6 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
               {formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
             </div>
 
-            <button className="bg-gradient-to-r from-orange-400 to-red-400 text-white py-3 px-8 rounded-full font-semibold mb-8">
-              Get My Plan
-            </button>
           </div>
 
           {/* Purple refund guarantee banner */}
@@ -95,25 +127,46 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
             </div>
           </div>
 
-          {/* Male before/after results */}
+          {/* Now / Goal – use user's uploaded photo when available */}
           <div className="bg-gradient-to-br from-purple-100 to-purple-200 rounded-2xl p-6 mb-8">
             <div className="flex justify-center gap-4 mb-4">
-              <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
-                <Image
-                  src="/new/firstbeforeafter.png"
-                  alt="Before"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
-                <Image
-                  src="/new/secondbeforeafter.png"
-                  alt="After"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              {faceImage ? (
+                <>
+                  <div className="w-36 h-48 relative rounded-2xl overflow-hidden bg-gray-100 ring-2 ring-orange-200/50">
+                    <img
+                      src={faceImage}
+                      alt="You now"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="w-36 h-48 relative rounded-2xl overflow-hidden bg-gray-100 ring-2 ring-green-300/50">
+                    <img
+                      src={faceImage}
+                      alt="Your goal"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/new/firstbeforeafter.png"
+                      alt="Before"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/new/secondbeforeafter.png"
+                      alt="After"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="flex justify-between items-center bg-white rounded-xl p-4">
@@ -412,12 +465,33 @@ export function PlanReadyScreen({ onNext }: PlanReadyScreenProps) {
             </div>
           </div>
 
-          <button
-            onClick={handleContinue}
-            className="w-full bg-gradient-to-r from-orange-400 to-red-400 text-white py-4 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity"
-          >
-            Get My Plan
-          </button>
+          {/* In-page payment form – updates when plan changes */}
+          {stripePromise ? (
+            <div key={selectedPlan} className="bg-white rounded-2xl border-2 border-gray-200 p-6 shadow-sm">
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-900">
+                  Complete payment — {planName}
+                </h3>
+                <p className="text-sm text-gray-600 mt-0.5">
+                  ${amount.toFixed(2)} · Secure checkout
+                </p>
+              </div>
+              <Elements stripe={stripePromise} options={elementsOptions}>
+                <CheckoutPage
+                  amount={amount}
+                  planId={selectedPlan}
+                  planName={planName}
+                />
+              </Elements>
+            </div>
+          ) : (
+            <a
+              href={`/payment?plan=${encodeURIComponent(selectedPlan)}&amount=${amount}`}
+              className="block w-full bg-gradient-to-r from-orange-400 to-red-400 text-white py-4 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity text-center"
+            >
+              Get My Plan
+            </a>
+          )}
 
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">

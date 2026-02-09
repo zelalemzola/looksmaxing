@@ -50,10 +50,10 @@ export function FaceYogaExplanationScreen({
                   height={200}
                   className="w-full h-40 rounded-xl object-contain"
                 />
-                <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
+                <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded ">
                   Before
                 </div>
-                <div className="absolute top-2 right-2 bg-orange-400 text-white px-2 py-1 rounded text-xs">
+                <div className="absolute top-2 right-2 bg-orange-400 text-white px-2 py-1 rounded ">
                   After 30 days
                 </div>
               </div>
@@ -98,7 +98,7 @@ export function FaceYogaExplanationScreen({
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm">
+                  <p className="font-semibold text-gray-900 text-md">
                     Uses <span className="font-bold">targeted techniques</span>{" "}
                     for your face, neck, and shoulders
                   </p>
@@ -120,8 +120,8 @@ export function FaceYogaExplanationScreen({
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm">Massage</p>
-                  <ul className="text-xs text-gray-600 mt-1 space-y-0.5">
+                  <p className="font-semibold text-gray-900 text-md">Massage</p>
+                  <ul className=" text-gray-600 mt-1 space-y-0.5">
                     <li>• boosts circulation</li>
                     <li>• improves lymph flow</li>
                     <li>• releases tension</li>
@@ -144,10 +144,10 @@ export function FaceYogaExplanationScreen({
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900 text-sm">
+                  <p className="font-semibold text-gray-900 text-md">
                     Acupressure ease stress and supports
                   </p>
-                  <ul className="text-xs text-gray-600 mt-1 space-y-0.5">
+                  <ul className=" text-gray-600 mt-1 space-y-0.5">
                     <li>• headache relief</li>
                     <li>• sinus release</li>
                     <li>• better sleep</li>
@@ -156,13 +156,14 @@ export function FaceYogaExplanationScreen({
               </div>
             </div>
           </div>
-
+         <div className="relative flex justify-center">
           <button
             onClick={onNext}
-            className="w-full bg-gradient-to-r from-orange-400 to-red-400 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity"
-          >
-            Ok, got it!
-          </button>
+            className=" fixed bottom-4  w-fit mx-auto text-center bg-gradient-to-r from-orange-400 to-red-400 text-white py-3 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity"
+            >
+              Ok, got it!
+            </button>
+          </div>
         </div>
       </div>
     </div>

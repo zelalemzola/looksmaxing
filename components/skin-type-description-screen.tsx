@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import type { QuizAnswers } from "@/types/quiz";
+import Image from "next/image";
 
 export interface SkinTypeDescriptionScreenProps {
   onNext: (answers: Partial<QuizAnswers>) => void;
@@ -81,7 +82,10 @@ export function SkinTypeDescriptionScreen({
         </div>
         <div className="w-10"></div>
       </div>
-
+      
+      {/* <div className="flex justify-center">
+        <Image src="/skintype.webp" alt="Program personalization" width={300} height={300} />
+      </div> */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
         <div className="w-full max-w-lg space-y-8">
           <div className="text-center">

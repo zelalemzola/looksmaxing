@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import type { QuizAnswers } from "@/types/quiz";
 
+const QUIZ_ANSWERS_KEY = "luvly_quiz_answers";
+
 export interface AnalyzingResponsesScreenProps {
   onNext: (answers: Partial<QuizAnswers>) => void;
+  faceImage?: string | null;
 }
 
 const analysisSteps = [
@@ -16,10 +19,24 @@ const analysisSteps = [
 
 export function AnalyzingResponsesScreen({
   onNext,
+  faceImage,
 }: AnalyzingResponsesScreenProps) {
   const [progress, setProgress] = useState([0, 0, 0, 0]);
   const [currentStep, setCurrentStep] = useState(0);
   const [allComplete, setAllComplete] = useState(false);
+  const [storedFaceImage, setStoredFaceImage] = useState<string | null>(null);
+  const displayImage = faceImage ?? storedFaceImage;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = sessionStorage.getItem(QUIZ_ANSWERS_KEY);
+      if (raw) {
+        const data = JSON.parse(raw) as { faceImage?: string };
+        if (data.faceImage) setStoredFaceImage(data.faceImage);
+      }
+    } catch {}
+  }, [faceImage]);
 
   const animateStep = (stepIndex: number) => {
     if (stepIndex >= analysisSteps.length) {
@@ -62,9 +79,29 @@ export function AnalyzingResponsesScreen({
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-8 relative">
-      <div className="w-full max-w-lg space-y-8">
+      <div className="w-full max-w-lg space-y-6">
+        {/* Small creative avatar on top */}
+        {displayImage && (
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="p-0.5 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-red-400 shadow-lg shadow-orange-200/50">
+                <div className="w-28 h-28 rounded-full overflow-hidden ring-2 ring-white bg-gray-100">
+                  <img
+                    src={displayImage}
+                    alt="Your face"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[10px] font-medium text-orange-600 bg-white/90 px-1.5 py-0.5 rounded-full shadow-sm whitespace-nowrap">
+                Your plan
+              </span>
+            </div>
+          </div>
+        )}
+
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
             Analyzing your responses...
           </h1>
         </div>
@@ -136,12 +173,16 @@ export function AnalyzingResponsesScreen({
         </div>
 
         {allComplete && (
+          <div className="flex justify-center">
+          <div className="pb-1 px-12 fixed bottom-2 mx-auto">
           <button
             onClick={handleContinue}
-            className="w-full bg-gradient-to-r from-orange-400 to-red-400 text-white py-4 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity"
-          >
-            Continue
-          </button>
+            className=" max-w-lg mx-auto block py-4 px-12 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"
+            >
+                Continue
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </div>

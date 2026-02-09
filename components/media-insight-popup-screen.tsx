@@ -9,8 +9,11 @@ export interface MediaInsightPopupScreenProps {
   title?: string;
   mediaType?: "image" | "gif";
   mediaSrc?: string;
+  faceImage?: string | null;
   duration?: number;
 }
+
+const DEFAULT_MEDIA_INSIGHT_DURATION = 15000;
 
 export function MediaInsightPopupScreen({
   onNext,
@@ -18,9 +21,26 @@ export function MediaInsightPopupScreen({
   title = "We noticed something about your skin",
   mediaType = "image",
   mediaSrc,
-  duration = 4000,
+  faceImage,
+  duration = DEFAULT_MEDIA_INSIGHT_DURATION,
 }: MediaInsightPopupScreenProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [storedFace, setStoredFace] = useState<string | null>(null);
+  const displayFace = faceImage ?? storedFace;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const raw = sessionStorage.getItem("luvly_quiz_answers");
+        if (raw) {
+          const data = JSON.parse(raw) as { faceImage?: string };
+          if (data.faceImage) setStoredFace(data.faceImage);
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+  }, [faceImage]);
 
   useEffect(() => {
     setIsVisible(true);
@@ -32,12 +52,25 @@ export function MediaInsightPopupScreen({
   }, [onNext, duration]);
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-8 relative overflow-hidden">
+    <div className="h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-6 relative overflow-hidden">
       <div
-        className={`w-full max-w-lg space-y-6 transition-all duration-1000 ${
+        className={`w-full max-w-lg space-y-5 transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
+        {/* User's face photo - show when available (prop or sessionStorage) */}
+        {displayFace && (
+          <div className="flex justify-center">
+            <div className="relative w-28 h-28 rounded-2xl overflow-hidden shadow-lg ring-2 ring-orange-200 flex-shrink-0 bg-gray-100">
+              <img
+                src={displayFace}
+                alt="Your face"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        )}
+
         {/* Media section */}
         {mediaSrc && (
           <div className="flex justify-center">
@@ -79,7 +112,7 @@ export function MediaInsightPopupScreen({
 
         <div className="text-center">
           <div className="bg-white rounded-2xl p-4 shadow-sm">
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex justify-center gap-2">
               <div className="w-6 h-6 rounded-full bg-orange-100 flex items-center justify-center">
                 <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
               </div>

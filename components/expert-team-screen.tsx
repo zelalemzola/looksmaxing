@@ -30,7 +30,7 @@ const experts = [
 export function ExpertTeamScreen({ onNext }: ExpertTeamScreenProps) {
   return (
     <div className=" bg-gray-50 flex flex-col items-center justify-center px-6 py-8">
-      <div className="w-full max-w-lg space-y-8">
+      <div className="w-full max-w-lg space-y-4">
         <div className="text-center">
           
           <h1 className="text-xl font-bold text-gray-900 leading-tight">
@@ -57,10 +57,10 @@ export function ExpertTeamScreen({ onNext }: ExpertTeamScreenProps) {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-gray-900 mb-1">
+                <h3 className="font-semibold text-lg text-gray-900 mb-1">
                   {expert.name}
                 </h3>
-                <p className="text-xs text-gray-600 leading-relaxed">
+                <p className="text-md text-gray-600 leading-relaxed">
                   {expert.description}
                 </p>
               </div>
@@ -68,12 +68,16 @@ export function ExpertTeamScreen({ onNext }: ExpertTeamScreenProps) {
           ))}
         </div>
 
+        <div className="flex justify-center">
+        <div className="pb-1 px-12 fixed bottom-2 mx-auto">
         <button
           onClick={onNext}
-          className="w-full bg-gradient-to-r from-orange-400 to-red-400 text-white py-4 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity"
-        >
-          Next
-        </button>
+          className=" max-w-lg mx-auto block py-4 px-12 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"
+          >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export function SuccessStatsScreen({ onNext }: SuccessStatsScreenProps) {
 
         <div className="text-center space-y-2">
           <p className="text-lg font-semibold text-gray-900">
-            400k+ men in their 30s have
+            400k+ Women in their 30s have
             <br />
             made strides towards their
             <br />

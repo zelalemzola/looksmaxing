@@ -107,7 +107,11 @@ export default function QuizPage() {
       onNext={handleNext}
       onBack={handleBack}
     />,
-    <AnalyzingSkinScreen key="analyzing-skin" onNext={handleExplanationNext} />,
+    <AnalyzingSkinScreen
+      key="analyzing-skin"
+      onNext={handleExplanationNext}
+      faceImage={answers.faceImage}
+    />,
     <FaceYogaKnowledgeScreen
       key="knowledge"
       onNext={handleNext}
@@ -128,6 +132,7 @@ export default function QuizPage() {
       onNext={handleExplanationNext}
       insight="Based on your skin satisfaction level, we're customizing exercises to target your specific concerns."
       title="We noticed something about your skin"
+      faceImage={answers.faceImage}
     />,
     <FocusAreasScreen key="focus" onNext={handleNext} onBack={handleBack} />,
     <BenefitsExplanationScreen
@@ -157,6 +162,7 @@ export default function QuizPage() {
       title="Great skincare habits detected!"
       mediaType="gif"
       mediaSrc="/new/secondgif.gif"
+      faceImage={answers.faceImage}
     />,
     <SunSafetyScreen key="sun" onNext={handleNext} onBack={handleBack} />,
     <ProgramPersonalizationScreen
@@ -183,6 +189,7 @@ export default function QuizPage() {
       title="Lifestyle analysis complete"
       mediaType="image"
       mediaSrc="/new/thirdbeforeafter.png"
+      faceImage={answers.faceImage}
     />,
     <GenderSelectionScreen
       key="gender"
@@ -239,7 +246,8 @@ export default function QuizPage() {
       title="Personalizing your experience"
       mediaType="image"
       mediaSrc="/new/firstbeforeafter.png"
-      duration={3500}
+      faceImage={answers.faceImage}
+      duration={15000}
     />,
     <SuccessStatsScreen key="success-stats" onNext={handleExplanationNext} />,
     <ExpertTeamScreen key="expert-team" onNext={handleExplanationNext} />,
@@ -247,11 +255,27 @@ export default function QuizPage() {
       key="science-studies"
       onNext={handleExplanationNext}
     />,
-    <AnalyzingResponsesScreen key="analyzing-responses" onNext={handleNext} />,
-    <FinalEmailCollectionScreen key="final-email" onNext={handleNext} />,
-    <EmailSubscriptionScreen key="email-subscription" onNext={handleNext} />,
+    <AnalyzingResponsesScreen
+    key="analyzing-responses"
+    onNext={handleNext}
+    faceImage={answers.faceImage}
+  />,
+    <FinalEmailCollectionScreen
+    key="final-email"
+    onNext={handleNext}
+    faceImage={answers.faceImage}
+  />,
+    <EmailSubscriptionScreen
+      key="email-subscription"
+      onNext={handleNext}
+      faceImage={answers.faceImage}
+    />,
     <NewYearOfferScreen key="new-year-offer" onNext={handleExplanationNext} />,
-    <PlanReadyScreen key="plan-ready" onNext={handleNext} />,
+    <PlanReadyScreen
+    key="plan-ready"
+    onNext={handleNext}
+    faceImage={answers.faceImage}
+  />,
   ];
 
   return (

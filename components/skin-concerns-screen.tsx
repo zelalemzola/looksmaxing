@@ -36,7 +36,7 @@ export function SkinConcernsScreen({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-y-hidden">
       {/* Header with back button and progress */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -120,13 +120,15 @@ export function SkinConcernsScreen({
       </div>
 
       {/* Continue Button */}
-      <div className="pb-8 px-6">
+      <div className="flex justify-center">
+      <div className="pb-8 px-6 fixed bottom-2 mx-auto">
         <button
           onClick={handleNext}
           className="w-full max-w-lg mx-auto block py-4 px-6 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"
         >
-          Next
-        </button>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -2,13 +2,32 @@
 
 import { useEffect, useState } from "react";
 
+const QUIZ_ANSWERS_KEY = "luvly_quiz_answers";
+
 export interface AnalyzingSkinScreenProps {
   onNext: () => void;
+  faceImage?: string | null;
 }
 
-export function AnalyzingSkinScreen({ onNext }: AnalyzingSkinScreenProps) {
+export function AnalyzingSkinScreen({ onNext, faceImage }: AnalyzingSkinScreenProps) {
   const [progress, setProgress] = useState(0);
   const [currentMessage, setCurrentMessage] = useState(0);
+  const [storedFaceImage, setStoredFaceImage] = useState<string | null>(null);
+
+  const displayImage = faceImage ?? storedFaceImage;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = sessionStorage.getItem(QUIZ_ANSWERS_KEY);
+      if (raw) {
+        const data = JSON.parse(raw) as { faceImage?: string };
+        if (data.faceImage) setStoredFaceImage(data.faceImage);
+      }
+    } catch {
+      // ignore
+    }
+  }, [faceImage]);
 
   const messages = [
     "Analyzing your skin type...",
@@ -40,10 +59,30 @@ export function AnalyzingSkinScreen({ onNext }: AnalyzingSkinScreenProps) {
   }, [onNext]);
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-8 relative overflow-hidden">
-      <div className="w-full max-w-lg space-y-8">
+    <div className="h-screen bg-gray-50 flex flex-col items-center justify-center px-6 py-6 relative overflow-hidden">
+      <div className="w-full max-w-lg space-y-6">
+        {/* Small creative avatar on top */}
+        {displayImage && (
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className="p-0.5 rounded-full bg-gradient-to-r from-orange-400 via-orange-500 to-red-400 shadow-lg shadow-orange-200/50">
+                <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-white bg-gray-100">
+                  <img
+                    src={displayImage}
+                    alt="Your face"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 text-[10px] font-medium text-orange-600 bg-white/90 px-1.5 py-0.5 rounded-full shadow-sm whitespace-nowrap">
+                Analyzing...
+              </span>
+            </div>
+          </div>
+        )}
+
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-8">
+          <h1 className="text-xl font-bold text-gray-900 mb-4">
             Analyzing your skin...
           </h1>
         </div>

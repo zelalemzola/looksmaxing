@@ -48,7 +48,7 @@ export function AgeSelectionScreen({ onNext }: AgeSelectionScreenProps) {
                   selectedAge === option.value ? "ring-2 ring-orange-400" : ""
                 }`}
               >
-                <div className="w-40 h-40 relative">
+                <div className="w-45 h-45 relative">
                   <Image
                     src={option.image}
                     alt={option.label}

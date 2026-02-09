@@ -27,7 +27,7 @@ export function TestimonialMaleScreen({ onNext }: TestimonialMaleScreenProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-y-hidden">
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
         <div className="w-full max-w-lg space-y-8">
           <div className="text-center space-y-4">
@@ -46,7 +46,7 @@ export function TestimonialMaleScreen({ onNext }: TestimonialMaleScreenProps) {
           <div className="flex justify-center gap-4">
             <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
               <Image
-                src="/new/malebefore.webp"
+                src="/malebefore.webp"
                 alt="Before"
                 fill
                 className="object-contain"
@@ -54,7 +54,7 @@ export function TestimonialMaleScreen({ onNext }: TestimonialMaleScreenProps) {
             </div>
             <div className="w-36 h-48 relative rounded-2xl overflow-hidden">
               <Image
-                src="/new/maleafter.webp"
+                src="/maleafter.webp"
                 alt="After"
                 fill
                 className="object-contain"
@@ -90,12 +90,17 @@ export function TestimonialMaleScreen({ onNext }: TestimonialMaleScreenProps) {
           </div>
 
           {showContinue && (
-            <button
+            <div className="flex justify-center">
+            <div className="pb-1 px-12 fixed bottom-2 mx-auto">
+              <button
               onClick={onNext}
-              className="w-full bg-gradient-to-r from-orange-400 to-red-400 text-white py-4 px-6 rounded-full font-semibold hover:opacity-90 transition-opacity"
+              className=" max-w-lg mx-auto block py-4 px-12 rounded-full font-semibold bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90 transition-opacity"
             >
-              Continue
-            </button>
+                Continue
+              </button>
+            
+            </div>
+          </div>
           )}
         </div>
       </div>

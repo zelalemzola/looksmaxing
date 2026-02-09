@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import type { QuizAnswers } from "@/types/quiz";
+import Image from "next/image";
 
 export interface MenstrualCycleScreenProps {
   onNext: (answers: Partial<QuizAnswers>) => void;
@@ -35,15 +36,17 @@ export function MenstrualCycleScreen({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-y-hidden">
       {/* Header with back button */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </button>
       </div>
-
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+      {/* <div className="flex justify-center items-center h-screen ">
+        <Image src="/skinonmensturation.jpg" alt="Program personalization" width={300} height={300} />
+      </div> */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 py-8 -mt-20">
         <div className="w-full max-w-lg space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-xl font-bold text-gray-900 leading-tight">
@@ -78,11 +81,12 @@ export function MenstrualCycleScreen({
       </div>
 
       {/* Continue Button */}
-      <div className="pb-8 px-6">
+      <div className="flex justify-center">
+      <div className="pb-1 px-12 fixed bottom-2 mx-auto">
         <button
           onClick={handleNext}
           disabled={!selectedOption}
-          className={`w-full max-w-lg mx-auto block py-4 px-6 rounded-full font-semibold transition-opacity ${
+          className={` max-w-lg mx-auto block py-4 px-12 rounded-full font-semibold transition-opacity ${
             selectedOption
               ? "bg-gradient-to-r from-orange-400 to-red-400 text-white hover:opacity-90"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
@@ -90,6 +94,7 @@ export function MenstrualCycleScreen({
         >
           Continue
         </button>
+        </div>
       </div>
     </div>
   );

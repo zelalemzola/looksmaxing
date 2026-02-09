@@ -47,7 +47,7 @@ export function DietsScreen({ onNext, onBack }: DietsScreenProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="h-screen bg-gray-50 flex flex-col">
       {/* Header with back button and progress */}
       <div className="flex items-center justify-between p-4">
         <button onClick={onBack} className="p-2">
@@ -114,7 +114,8 @@ export function DietsScreen({ onNext, onBack }: DietsScreenProps) {
       </div>
 
       {/* Continue Button */}
-      <div className="pb-8 px-6">
+      <div className="flex justify-center">
+      <div className="pb-8 px-6 fixed bottom-2 mx-auto">
         <button
           onClick={handleNext}
           disabled={!selectedDiet}
@@ -124,8 +125,9 @@ export function DietsScreen({ onNext, onBack }: DietsScreenProps) {
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
           }`}
         >
-          Continue
-        </button>
+            Continue
+          </button>
+        </div>
       </div>
     </div>
   );
